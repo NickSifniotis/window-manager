@@ -20,4 +20,9 @@ public class Window
     {
         return (this.x >= 0 && this.x2 <= max_x && this.y >= 0 && this.y2 <= max_y);
     }
+
+    public void display()
+    {
+        System.out.println(x + " " + y + " " + (x2 - x) + " " + (y2 - y));
+    }
 }

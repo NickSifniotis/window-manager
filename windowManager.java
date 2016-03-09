@@ -140,5 +140,9 @@ public class windowManager
         window_list = new ArrayList<>();
 
         readInput();
+
+        System.out.println(window_list.size() + " window(s):");
+        for (Window w: window_list)
+            w.display();
     }
 }
