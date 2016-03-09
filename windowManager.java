@@ -15,16 +15,13 @@ public class windowManager
 
     private static void open (int x, int y, int dx, int dy)
     {
-        boolean failure = false;
-
         Window newbie = new Window (x, y, dx, dy);
         int result = get_colliding_window(newbie);
 
-        if (result != -1)
+        if (result != -1 || !newbie.sanity_check(x_max, y_max))
             System.out.println("Command " + 0 + ": OPEN - window does not fit");
         else
             window_list.add(newbie);
-
     }
 
     private static void close (int x, int y)
@@ -45,7 +42,7 @@ public class windowManager
         Window hypothetical_me = new Window (myself.x, myself.y, nu_dx, nu_dy);
 
         int result = get_colliding_window(hypothetical_me);
-        if (result == -1)
+        if (result == -1 && hypothetical_me.sanity_check(x_max, y_max))
             window_list.add(me, hypothetical_me);
         else
         {
@@ -133,8 +130,8 @@ public class windowManager
         Window top_most = (a.y < b.y) ? a : b;
         Window bottom_most = (a.y < b.y) ? b : a;
 
-        return (left_most.x <= right_most.x) && (left_most.x + left_most.dx > right_most.x)
-                && (top_most.y <= bottom_most.y) && (top_most.y + top_most.dy > bottom_most.y);
+        return (left_most.x <= right_most.x) && (left_most.x2 > right_most.x)
+                && (top_most.y <= bottom_most.y) && (top_most.y2 > bottom_most.y);
     }
 
 
